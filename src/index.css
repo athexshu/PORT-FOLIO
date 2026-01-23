@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Premium Dark Futuristic Design System */
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 20% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 220 20% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 270 100% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Premium Variables */
+    --neon-cyan: 187 100% 50%;
+    --neon-purple: 270 100% 65%;
+    --neon-pink: 330 100% 65%;
+    --glass-bg: 220 20% 10%;
+    --glass-border: 220 20% 20%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(187 100% 50%) 0%, hsl(270 100% 65%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(187 100% 50% / 0.15) 0%, transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(220 20% 12% / 0.8) 0%, hsl(220 20% 8% / 0.9) 100%);
+    
+    /* Shadows */
+    --shadow-neon: 0 0 20px hsl(187 100% 50% / 0.3), 0 0 40px hsl(187 100% 50% / 0.1);
+    --shadow-neon-lg: 0 0 30px hsl(187 100% 50% / 0.4), 0 0 60px hsl(187 100% 50% / 0.2);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+  }
+
+  .dark {
+    --background: 220 20% 4%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply relative overflow-hidden rounded-2xl;
+    background: linear-gradient(135deg, hsl(220 20% 12% / 0.6) 0%, hsl(220 20% 8% / 0.8) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(220 20% 20% / 0.5);
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3);
+  }
+
+  .glass-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(187 100% 50% / 0.06), transparent 40%);
+  }
+
+  .glass-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Neon Text */
+  .text-neon {
+    @apply text-primary;
+    text-shadow: 0 0 10px hsl(187 100% 50% / 0.5), 0 0 20px hsl(187 100% 50% / 0.3);
+  }
+
+  /* Neon Border Glow */
+  .neon-border {
+    @apply relative;
+    box-shadow: 0 0 15px hsl(187 100% 50% / 0.3), inset 0 0 15px hsl(187 100% 50% / 0.1);
+  }
+
+  /* Animated Gradient Background */
+  .animated-gradient {
+    background: linear-gradient(-45deg, hsl(220 20% 6%), hsl(220 30% 8%), hsl(270 20% 8%), hsl(220 20% 6%));
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse Glow */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px hsl(187 100% 50% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(187 100% 50% / 0.6); }
+  }
+
+  /* Grid Background */
+  .grid-bg {
+    background-image: 
+      linear-gradient(hsl(220 20% 15% / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(220 20% 15% / 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Skill Tag */
+  .skill-tag {
+    @apply px-4 py-2 rounded-full text-sm font-medium;
+    background: linear-gradient(135deg, hsl(220 20% 15% / 0.8) 0%, hsl(220 20% 10% / 0.9) 100%);
+    border: 1px solid hsl(187 100% 50% / 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    border-color: hsl(187 100% 50% / 0.8);
+    box-shadow: 0 0 20px hsl(187 100% 50% / 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(187 100% 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* CTA Button Primary */
+  .btn-primary {
+    @apply relative px-8 py-4 rounded-full font-semibold text-background overflow-hidden;
+    background: linear-gradient(135deg, hsl(187 100% 50%) 0%, hsl(187 100% 40%) 100%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px hsl(187 100% 50% / 0.5);
+  }
+
+  /* CTA Button Secondary */
+  .btn-secondary {
+    @apply relative px-8 py-4 rounded-full font-semibold overflow-hidden;
+    background: transparent;
+    border: 2px solid hsl(187 100% 50% / 0.5);
+    color: hsl(187 100% 50%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: hsl(187 100% 50% / 0.1);
+    border-color: hsl(187 100% 50%);
+    box-shadow: 0 0 20px hsl(187 100% 50% / 0.3);
+  }
+
+  /* Project Card */
+  .project-card {
+    @apply glass-card p-6 transition-all duration-500;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px hsl(0 0% 0% / 0.4), 0 0 30px hsl(187 100% 50% / 0.15);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(220 20% 8%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(220 20% 20%);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(187 100% 50% / 0.5);
+  }
+}
