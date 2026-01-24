@@ -7,22 +7,22 @@ const contactLinks = [
   {
     name: 'Email',
     icon: Mail,
-    href: 'mailto:atharvingale@example.com',
-    label: 'atharvingale@example.com',
+    href: 'mailto:atharvingale408@gmail.com',
+    label: 'atharvingale408@gmail.com',
     color: 'hover:bg-red-500/10 hover:border-red-500/50',
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
-    href: 'https://linkedin.com/in/atharvingale',
+    href: 'https://www.linkedin.com/in/atharv-ingale1714/',
     label: 'linkedin.com/in/atharvingale',
     color: 'hover:bg-blue-500/10 hover:border-blue-500/50',
   },
   {
     name: 'GitHub',
     icon: Github,
-    href: 'https://github.com/atharvingale',
-    label: 'github.com/atharvingale',
+    href: 'https://github.com/athexshu',
+    label: 'github.com/athexshu',
     color: 'hover:bg-purple-500/10 hover:border-purple-500/50',
   },
 ];

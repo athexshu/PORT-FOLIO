@@ -15,6 +15,7 @@ interface Robot {
   status: 'moving' | 'waiting';
   rotation: number;
   waitTicks: number;
+  safetyRadius:number
 }
 
 const robotImages = {
@@ -57,9 +58,9 @@ const getAngle = (x1: number, y1: number, x2: number, y2: number) =>
 
 const FMSAnimation = () => {
   const [robots, setRobots] = useState<Robot[]>([
-    { id: '1', name: 'Forklift-01', type: 'counterbalance', x: paths.counterbalance[0].x, y: paths.counterbalance[0].y, targetIndex: 1, speed: 0.15, status: 'moving', rotation: 0, waitTicks: 0 },
-    { id: '2', name: 'Pallet-02', type: 'palletjack', x: paths.palletjack[0].x, y: paths.palletjack[0].y, targetIndex: 1, speed: 0.12, status: 'moving', rotation: 0, waitTicks: 0 },
-    { id: '3', name: 'Reach-03', type: 'reachtruck', x: paths.reachtruck[0].x, y: paths.reachtruck[0].y, targetIndex: 1, speed: 0.1, status: 'moving', rotation: 0, waitTicks: 0 },
+    { id: '1', name: 'Forklift-01', type: 'counterbalance', x: paths.counterbalance[0].x, y: paths.counterbalance[0].y, targetIndex: 1, speed: 0.15, status: 'moving', rotation: 0, waitTicks: 0 , safetyRadius:6 },
+    { id: '2', name: 'Pallet-02', type: 'palletjack', x: paths.palletjack[0].x, y: paths.palletjack[0].y, targetIndex: 1, speed: 0.12, status: 'moving', rotation: 0, waitTicks: 0 , safetyRadius:6 },
+    { id: '3', name: 'Reach-03', type: 'reachtruck', x: paths.reachtruck[0].x, y: paths.reachtruck[0].y, targetIndex: 1, speed: 0.1, status: 'moving', rotation: 0, waitTicks: 0, safetyRadius: 6 },
   ]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -190,7 +191,7 @@ const FMSAnimation = () => {
               fill="none" stroke="hsl(var(--primary) / 0.2)" strokeWidth="0.3" strokeDasharray="1 1" opacity={0.7}
             />
             {pts.map((p, i) => (
-              <circle key={i} cx={p.x} cy={p.y} r="1" fill="hsl(var(--primary) / 0.5)" opacity={0.7} />
+              <circle key={i} cx={p.x} cy={p.y} r="0.8" fill="hsl(var(--primary) / 0.5)" opacity={0.7} />
             ))}
           </g>
         ))}
@@ -210,6 +211,15 @@ const FMSAnimation = () => {
             <g transform={`rotate(${robot.rotation})`}>
               <image href={robotImages[robot.type]} x="-3" y="-3" width="6" height="6" opacity="0.8" />
             </g>
+
+               <circle 
+              cx={0} 
+              cy={0} 
+              r={robot.safetyRadius} 
+              fill="hsl(var(--primary) / 0.05)" 
+              stroke={robot.status === 'moving' ? 'hsl(var(--primary) / 0.3)' : 'hsl(40 100% 50% / 0.4)'} 
+              strokeWidth="0.2" 
+            />
            
             <text x="0" y="4" fontSize="1.0" fill="white" textAnchor="middle">{robot.name}</text>
           </motion.g>
