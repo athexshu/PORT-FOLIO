@@ -7,8 +7,18 @@ import taskManagerImg from '@/assets/projects/task-manager.png';
 import blogImg from '@/assets/projects/blog.png';
 import pizzaImg from '@/assets/projects/pizza.png';
 import ecommerceImg from '@/assets/projects/ecommerce.png';
+import travelWebsiteImg from '@/assets/projects/travel.png';
 
 const projects = [
+
+  {
+    title: 'Venkateshwara Tours & Travels',
+    description: 'Responsive travel company website built as a hobby project to help a friend launch their travel business. Includes service listings, destination highlights, and contact sections with a clean and user-friendly UI.',
+    tech: ['React', 'Tailwind CSS', 'JavaScript', 'Responsive Design'],
+    gradient: 'from-orange-500/20 to-amber-500/20',
+    image: travelWebsiteImg,
+    githubUrl: 'https://athexshu.github.io/venkteshwara-tours-travels/'
+  },
 
   {
     title: 'Robot Map Editor',
